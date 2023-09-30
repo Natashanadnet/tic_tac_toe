@@ -1,0 +1,389 @@
+/* VARIABLES */
+:root {
+  --color-light: #fff;
+  --color-medium: #a3e635;
+  --color-accent: #8b5cf6;
+  --color-grey-extra-light: #e5e5e5;
+  --color-grey-light: #737373;
+  --color-grey-dark: #404040;
+  --color-black: #0a0a0a;
+
+  --font-family: "Poppins", sans-serif;
+}
+
+/* RESET */
+/* Box sizing rules */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Remove default margin */
+* {
+  margin: 0;
+  padding: 0;
+  font: inherit;
+}
+
+/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
+ul[role="list"],
+ol[role="list"] {
+  list-style: none;
+}
+
+/* Set core root defaults */
+html:focus-within {
+  scroll-behavior: smooth;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+/* Set core body defaults */
+body {
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+}
+
+/* A elements that don't have a class get default styles */
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+}
+
+/* Make images easier to work with */
+img,
+picture,
+svg {
+  max-width: 100%;
+  display: block;
+}
+
+/* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Make rem calculations easier*/
+html {
+  font-size: 10px;
+  font-family: var(--font-family);
+  font-weight: 400;
+}
+
+button {
+  cursor: pointer;
+}
+
+/* START OF STYLING */
+.container {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  place-items: center;
+  align-items: start;
+  height: 100vh;
+  position: relative;
+}
+
+.logo {
+  font-size: 7rem;
+  justify-self: start;
+  padding-left: 2rem;
+  padding-top: 2rem;
+  line-height: 4rem;
+  font-weight: 700;
+  color: var(--color-accent);
+}
+
+.game {
+  display: flex;
+  flex-direction: column;
+  gap: 6rem;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.game-board {
+  width: 60%;
+  height: 50%;
+  align-self: center;
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+}
+
+.cell {
+  min-width: 33.33%;
+  min-height: 16.66%;
+  line-height: 0;
+  display: grid;
+  place-content: center;
+  font-size: 15rem;
+}
+.btn {
+  background-color: var(--color-medium);
+  padding: 2rem 3rem;
+  font-size: 2.5rem;
+  border-radius: 50px;
+  border: none;
+  font-weight: 500;
+  position: relative;
+}
+
+.start-btn::after {
+  content: "";
+  position: absolute;
+  background-color: var(--color-accent);
+  width: 100%;
+  height: 100%;
+  top: 1rem;
+  left: 1rem;
+  z-index: -1;
+  border-radius: 50px;
+}
+
+.row {
+  display: flex;
+}
+
+[data-cell] {
+  cursor: pointer;
+}
+
+[data-cell="0"] {
+  border-right: 2px solid var(--color-grey-dark);
+  border-bottom: 2px solid var(--color-grey-dark);
+}
+
+[data-cell="1"] {
+  border-bottom: 2px solid var(--color-grey-dark);
+}
+.row [data-cell="2"] {
+  border-left: 2px solid var(--color-grey-dark);
+  border-bottom: 2px solid var(--color-grey-dark);
+}
+
+[data-row="2"] [data-cell] {
+  border-bottom: none;
+}
+
+.token {
+  font-size: 15rem;
+}
+
+.x {
+  color: var(--color-accent);
+}
+
+.o {
+  color: var(--color-medium);
+}
+
+.scores {
+  padding-left: 2rem;
+  padding-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 5rem;
+  background-color: var(--color-medium);
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  z-index: 10;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.scores h3 {
+  font-size: 4rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+
+.game-score {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.scores p {
+  font-size: 3rem;
+  color: var(--color-accent);
+  background-color: var(--color-light);
+  padding: 2rem 3rem;
+  border-radius: 10px;
+  text-align: center;
+  min-width: 5rem;
+  max-width: fit-content;
+}
+
+.restart-btn {
+  background-color: var(--color-accent);
+  color: var(--color-light);
+  cursor: pointer;
+}
+
+.restart-btn::after {
+  content: "";
+  position: absolute;
+  background-color: var(--color-light);
+  width: 100%;
+  height: 100%;
+  top: 1rem;
+  left: 1rem;
+  border-radius: 50px;
+  z-index: -1;
+}
+
+.hidden {
+  display: none;
+}
+
+.icon-emoji {
+  fill: var(--color-accent);
+  height: 10rem;
+  width: 10rem;
+}
+
+.modal-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.modal {
+  background-color: var(--color-medium);
+  border-radius: 50px;
+  border: none;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  padding: 2rem;
+}
+
+#modal::backdrop {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.btn-modal {
+  background-color: var(--color-accent);
+  color: var(--color-light);
+}
+
+.icon-close {
+  fill: var(--color-accent);
+  height: 5rem;
+  width: 5rem;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  gap: 3rem;
+  padding: 2rem;
+  font-weight: 500;
+}
+
+.close-btn {
+  margin-left: auto;
+  background: transparent;
+  border: none;
+}
+
+.form-name {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+input[type="text"] {
+  border-radius: 30px;
+  outline: none;
+  border: none;
+  padding: 1rem;
+}
+
+input[type="text"]:focus {
+  border: 2px solid var(--color-accent);
+}
+
+fieldset {
+  border: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+input[type="radio"] {
+  appearance: none;
+}
+
+.characters {
+  display: flex;
+  gap: 5rem;
+  font-size: 5rem;
+  color: var(--color-light);
+  padding: 1.5rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.char {
+  cursor: pointer;
+  width: 6rem;
+  height: 6rem;
+  display: grid;
+  place-content: center;
+  border-radius: 10px;
+  position: relative;
+  z-index: 1;
+}
+
+.char label {
+  cursor: pointer;
+  display: grid;
+  place-content: center;
+}
+
+input[type="radio"]:checked + label {
+  background-color: var(--color-accent);
+  color: #ffffff;
+  width: 6rem;
+  height: 6rem;
+  border-radius: 50px;
+}
+
+.win-modal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.winning-modal-text {
+  font-size: 4rem;
+}
+
+#winning-modal::backdrop {
+  background-color: rgba(0, 0, 0, 0.5);
+}
